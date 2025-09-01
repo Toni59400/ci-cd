@@ -5,31 +5,37 @@
 
   <groupId>com.toni</groupId>
   <artifactId>calculator</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <packaging>jar</packaging>
-  <name>calculator</name>
+  <name>calculator-junit5</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <junit4.version>4.13.2</junit4.version>
-    <surefire.version>3.2.5</surefire.version>
+    <maven.compiler.release>17</maven.compiler.release>
+    <junit.jupiter.version>5.10.0</junit.jupiter.version>
+    <maven.surefire.version>3.2.5</maven.surefire.version>
   </properties>
 
   <dependencies>
-    <!-- JUnit 4 for tests -->
+    <!-- JUnit 5 -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>${junit4.version}</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- (Optionnel) tests paramétrés -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
-      <!-- Java compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -38,11 +44,15 @@
           <release>17</release>
         </configuration>
       </plugin>
-      <!-- Run tests + produce XML reports -->
+
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire.version}</version>
+        <version>${maven.surefire.version}</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
+        </configuration>
       </plugin>
     </plugins>
   </build>
